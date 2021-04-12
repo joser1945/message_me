@@ -19,7 +19,13 @@ $(document).on('turbolinks:load', function() {
         $(this).closest('.message').transition('fade');
     });
     
+    $("#message_body").bind("ajax:complete", function(event,xhr,status){
+        $('#message_body').val('');
+    });
+
+    submit_message();
     scroll_bottom();
+
 })
 
 scroll_bottom = $('#message_box').ready(function() {
@@ -27,3 +33,12 @@ scroll_bottom = $('#message_box').ready(function() {
         $('#message_box').scrollTop($('#message_box')[0].scrollHeight);
     };
 });
+
+submit_message = function() {
+    $('#message_body').on('keydown', function(e) {
+      if (e.keyCode == 13) {
+        $('button').click();
+        e.target.value = "";
+      };
+    });
+  };
