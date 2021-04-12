@@ -18,4 +18,12 @@ $(document).on('turbolinks:load', function() {
     $('.message .close').on('click', function() {
         $(this).closest('.message').transition('fade');
     });
+    
+    scroll_bottom();
 })
+
+scroll_bottom = $('#message_box').ready(function() {
+    if ($('#message_box').length > 0) {
+        $('#message_box').scrollTop($('#message_box')[0].scrollHeight);
+    };
+});
